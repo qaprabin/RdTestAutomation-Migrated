@@ -1,0 +1,4 @@
+#This file replaces my (pom.xml).
+selenium
+pytest
+pytest-ordering
