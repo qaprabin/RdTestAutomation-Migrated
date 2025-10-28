@@ -2,3 +2,4 @@
 selenium
 pytest
 pytest-ordering
+Appium-Python-Client
