@@ -16,6 +16,11 @@ class HomePage:
     FINGER_TYPE_DROPDOWN = (By.ID, "Ftype")
     PID_DATA_TEXT_AREA = (By.ID, "txtPidData")
 
+    # --- New Iris Locators ---
+    FINGER_COUNT_DROPDOWN = (By.ID, "Fcount")
+    IRIS_TYPE_DROPDOWN = (By.ID, "Itype")
+    IRIS_COUNT_DROPDOWN = (By.ID, "Icount")
+
     # --- Constructor (replaces public HomePage) ---
     def __init__(self, driver):
         self.driver = driver
@@ -73,3 +78,50 @@ class HomePage:
         element = self.wait.until(EC.presence_of_element_located(self.PID_DATA_TEXT_AREA))
         # Use .get_attribute("value") and .strip()
         return element.get_attribute("value").strip()
+    """
+    Prabin this part is your iris part just do remember for now its both Finger and Iris.
+    Remember it ok.
+    """
+    # --- New Iris Methods ---
+
+    def select_finger_count(self, text):
+        select_element = self.driver.find_element(*self.FINGER_COUNT_DROPDOWN)
+        select = Select(select_element)
+        select.select_by_visible_text(text)
+        print(f"Finger Count selected: {text}")
+
+    def select_iris_type(self, text):
+        select_element = self.driver.find_element(*self.IRIS_TYPE_DROPDOWN)
+        select = Select(select_element)
+        select.select_by_visible_text(text)
+        print(f"Iris Type selected: {text}")
+
+    def select_iris_count(self, text):
+        select_element = self.driver.find_element(*self.IRIS_COUNT_DROPDOWN)
+        select = Select(select_element)
+        select.select_by_visible_text(text)
+        print(f"Iris Count selected: {text}")
+
+    # --- New Helper Methods to Get Data ---
+    # We need these to build the final XML string, just like your Java code
+
+    def get_selected_iris_type(self):
+        select_element = self.driver.find_element(*self.IRIS_TYPE_DROPDOWN)
+        select = Select(select_element)
+        return select.first_selected_option.text
+
+    def get_selected_iris_count(self):
+        select_element = self.driver.find_element(*self.IRIS_COUNT_DROPDOWN)
+        select = Select(select_element)
+        return select.first_selected_option.text
+
+    def get_selected_data_type_value(self):
+        # Your Java code gets the "value" (0 or 1), not the text (X or P)
+        select_element = self.driver.find_element(*self.DATA_TYPE_DROPDOWN)
+        select = Select(select_element)
+        return select.first_selected_option.get_attribute("value")
+
+    def get_selected_finger_type(self):
+        select_element = self.driver.find_element(*self.FINGER_TYPE_DROPDOWN)
+        select = Select(select_element)
+        return select.first_selected_option.text
