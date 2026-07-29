@@ -82,7 +82,7 @@ def driver():
     if driver:
         driver.quit()
 # -----------------------------------------------------------------
-# --- UPDATED MOBILE DRIVER FIXTURE (Using your Java settings) ---
+# --- UPDATED MOBILE DRIVER FIXTURE (Using from my Java settings) ---
 # -----------------------------------------------------------------
 @pytest.fixture(scope="session")
 def mobile_driver():
